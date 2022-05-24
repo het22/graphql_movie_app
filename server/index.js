@@ -1,32 +1,28 @@
 const { ApolloServer, gql } = require('apollo-server');
+const tmdb = require('./tmdb.js');
 
 const typeDefs = gql`
   type Movie {
     id: ID
     title: String
+    overview: String
+    release_date: String
+    popularity: Float
+    poster_path: String
+    backdrop_path: String
   }
 
   type Query {
     movie(id: ID): Movie
-    movies: [Movie]
+    top_rated_movies: [Movie]
   }
 `;
 
-const movies = [
-  {
-    id: 1,
-    title: 'Kingdom of Heaven'
-  },
-  {
-    id: 2,
-    title: 'District 9'
-  }
-];
-
 const resolvers = {
   Query: {
-    movie: (_, { id }) => movies.find(movie => movie.id == id),
-    movies: () => movies
+    movie: (_, { id }) => tmdb.get(`/movie/${id}`),
+    top_rated_movies: () =>
+      tmdb.get(`/movie/top_rated`).then(data => data.results)
   }
 };
 
