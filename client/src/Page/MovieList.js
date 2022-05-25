@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import request from '../Util/request';
 
 function MovieList(props) {
@@ -17,7 +18,9 @@ function MovieList(props) {
       {isSuccess && (
         <ul>
           {movieList.map(movie => (
-            <li key={movie.id}>{movie.title}</li>
+            <li key={movie.id}>
+              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+            </li>
           ))}
         </ul>
       )}
