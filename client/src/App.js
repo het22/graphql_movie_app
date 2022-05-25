@@ -1,5 +1,11 @@
+import MovieList from './Page/MovieList';
+
 function App() {
-  return <main></main>;
+  return (
+    <main>
+      <MovieList />
+    </main>
+  );
 }
 
 export default App;
