@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
+import request from '../Util/request';
 
 function MovieList(props) {
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
-    setMovieList([
-      {
-        id: 1,
-        title: 'Kingdom of Heaven'
-      },
-      {
-        id: 2,
-        title: 'District 9'
+    request(`{
+      top_rated_movies {
+        id,
+        title
       }
-    ]);
+    }`).then(({ top_rated_movies }) => setMovieList(top_rated_movies));
   }, []);
 
   return (
