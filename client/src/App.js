@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import MovieDetail from './Page/MovieDetail';
 import MovieList from './Page/MovieList';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <main>
       <Routes>
         <Route path="/" element={<MovieList />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
       </Routes>
     </main>
   );
